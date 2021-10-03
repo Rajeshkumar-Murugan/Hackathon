@@ -1,0 +1,135 @@
+body{
+    margin: 0px;
+    padding:0px;
+    height:100vh;
+    background-color: darkgrey;
+}
+#sectionOne{
+    display: flex;
+  justify-content: space-between
+}
+
+
+#button {
+  background-color: #ff0000; /* Green */
+  border: black ;
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+#button:hover {opacity: 1}
+
+
+ul{
+  list-style:none;
+  background:white;
+  color:black;
+  padding:15px;
+  margin:0px;
+display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#threadmsg{
+    padding: 10px 20px;
+    border-width: 100%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+}
+.signin {
+
+    padding: 15px 30px;
+    margin-left: 10px;
+    border-left: 10px;
+    background-color: #6e5ff1;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+.signin:hover {opacity: 1}
+
+#sendBtn{
+ 
+        background-color: #f4511e;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        font-size: 16px;
+        margin: 4px 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.6;
+        transition: 0.3s;
+      }
+#sendBtn:hover {opacity: 1}
+
+
+
+.primary{
+
+ background-color:white; 
+ display: flex;
+ flex-direction: column; 
+
+ padding: 10px;
+ align-items: flex-start;
+ font-size: xx-large;
+ border: 10px;
+}
+
+li{
+  display:flex;
+ 
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+  @media(min-width:400px){
+  
+    ul{
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
+      padding:10px;
+      align-items: center;
+    justify-content: space-around;
+    }
+
+    #button {
+        background-color: #4CAF50; /* Green */
+        border: black ;
+        color: white;
+        padding: 7px 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        
+      }
+  }
+  

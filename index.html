@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gmail API Quickstart</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Textfont starts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<!-- Textfont Ends -->
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="getProfile.js"></script>
+  </head>
+  <body>
+ 
+
+<!-- =========================Body content============ -->
+<div id="sectionOne">
+    <div>
+      <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r2.png" alt="Gmail Icon"/>
+    </div> 
+  
+    <div>
+      <button onclick="authenticate().then(loadClient)" class="signin">Sign In</button> 
+    </div>
+ </div>          
+
+<div id="Message">
+  
+  <ul>
+    <li>
+        <div id="primaryMessage">
+              
+            <button onclick="getThreadmsg()" class="primaryBtn" id="button">
+                    <i class="material-icons" id="sectionTwoicon">inbox</i> 
+                <div>
+                    Primary 
+                </div> 
+            </button>               
+            </div>
+          
+        </li>
+    <li>
+      <button class="socialBtn" onclick ="getThreadmsg()" id="button">
+        <i class="material-icons" id="sectionTwoicon">send</i> 
+            <div>
+                Sent Email
+            </div>
+                
+            </button>
+            
+        </li>
+    <li>
+      
+      
+      <button class="promotionsBtn" onclick="listOfdrafts()" id="button">
+         <i class="material-icons" id="sectionTwoicon">drafts</i>
+     <div>
+        Draft Email
+     </div>
+               
+            </button>
+              
+            </li>
+   
+   </ul>
+   
+</div>   
+       
+      <div >
+        <div class="primary"> </div>
+    </div>
+            
+       <div>
+        <input type="text" placeholder="Enter Email ID" id="emailField">
+        <input type="text" placeholder="Message" id="messageField">
+        <button id="sendBtn">send</button>
+
+       </div>
+        
+
+
+
+<!-- ========================Body content ends============== -->
+<!-- ======================== -->
+
+
+    <!-- ==================== -->
+
+  </body>
+</html>
