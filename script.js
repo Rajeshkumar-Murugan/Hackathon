@@ -54,7 +54,7 @@ let load = [];
   
         return gapi.client.gmail.users.messages.list({
           "userId": "me",
-          "maxResults": 500
+          "maxResults": 50
         })
             .then(function(response) {
                     // Handle the results here (response.result has the parsed body).
@@ -262,7 +262,7 @@ let msgencoded = []
             msgencoded.push(load[i].parts[0].parts[0].body.data)
           }
         // }
-        console.log(i)
+       // console.log(i)
         // mailmessage(msgencoded[0])
         
         var str = msgencoded[0]
@@ -271,7 +271,7 @@ let msgencoded = []
         
         //console.log(d2);
         var decodedStr = atob(d2);
-        console.log(decodedStr);
+       // console.log(decodedStr);
         
 
         
