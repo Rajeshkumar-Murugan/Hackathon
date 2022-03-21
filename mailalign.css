@@ -1,0 +1,334 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    height: 100vh;
+
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to left top, #ff0000, #ff3d66, #ff75ad, #ffa6e0, #f8d1fc, #ebdaff, #e3e1fe, #e1e7f9, #c1d8f4, #98cbec, #64bfde, #00b3ca);
+
+    background-size:auto;
+  overflow: hidden;
+  
+    
+}
+.signbtn{
+  display: flex;
+}
+.gmaillogo{
+  height: 400px;
+}
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+ .sectionOne{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+    align-items: center;
+ }
+
+ .total-msg-count{
+   color: white;
+ }
+
+.profile-btn{
+    height: 60px;
+    width: 60px;
+    border-radius: 25px;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzAFp0zb3cTljbXKwEf7jdWQeU2RLWkyzBg&usqp=CAU") ;
+    
+}
+.subjectmsg{
+  text-align: left;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: rgb(59, 56, 56);
+    color: rgb(216, 207, 207);
+    text-align: center;
+    border-radius: 6px;
+    /* padding: 5px 0; */
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    bottom: 0px;
+    right: 105%;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .tooltiptext{
+    padding: 5px;
+    padding-right: 20px;
+    bottom: 9px;
+    
+    
+  }
+  .account-type{
+    color: white;
+  }
+
+  .account-type, .account-mail-count, .account-mail{
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+  }
+
+  
+  /* Navigation bars */
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+}
+.sidebar .nav-link:hover {
+    background: var(--bs-light);
+    color: var(--bs-primary);
+}
+  
+  /* catagories */
+  /* .catagories{
+    display: flex;
+    flex-direction: row;
+  } */
+
+  .primary-btn {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: rgb(41, 39, 39);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 5px rgb(201, 201, 201);
+  }
+  
+  .primary-btn:hover {
+    background-color: #ffffff;
+   color: black;
+  }
+  
+  .primary-btn:active {
+    background-color: #fcfcfc;
+    color: red;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+
+  /* tr{
+    border: 2px solid black;
+    padding: 5px;
+  } */
+
+  .header{
+    display: flex;
+    /* position: fixed; */
+    background-color: rgba(255,255,255,0.2);
+    width: 100%;
+    /* top: 0%; */
+  }
+  /* .container-fluid{
+padding: 0px;
+width: 100%;
+  } */
+
+  .catagories{
+    /* position: fixed; */
+    
+    background-color: rgba(255,255,255,0.2);
+    /* top: 14%; */
+    /* margin-left: 20%; */
+    /* width: 80%; */
+    
+    
+  }
+   .message-content{ 
+   
+    overflow-y: scroll;
+    height: 500px;
+  }
+  
+   .message-from, .message-sub, .message-date {
+    width: 80%;
+    padding: 10px;
+  }
+  /* .message-from{
+    width:10%
+  }
+
+  .message-sub{
+    width:65%
+
+  }
+  .message-date{
+    width:5%
+  } */
+
+
+
+ 
+.msg-record{
+  width: 100%;
+  padding: 20px;
+  /* border: 1px solid black; */
+}
+
+
+
+.msg-record:link, .msg-record:visited {
+  background-color: rgba(255,255,255,0.2);
+  color: rgb(0, 0, 0);
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.msg-record:hover, .msg-record:active {
+  background-color: rgba(233, 87, 87, 0.2);
+}
+
+.message-from, .message-sub{
+  text-align: left;
+  
+}
+/* .message-from{
+  width: 20 px;
+} */
+
+
+.bgwhite{
+  background-color: white;
+  background-color: white;
+  overflow-y: scroll;
+  height: 550px;
+
+}
+
+.icons{
+  display: flex;
+}
+
+.b {
+  visibility: hidden;
+}
+
+
+/* sidebar */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+@media (max-width: 375px) {
+  .bgwhite{
+   
+    height: 150rem;
+  
+  }
+ }
