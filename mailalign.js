@@ -23,7 +23,7 @@ let pagenation = 0;
     gapi.client.setApiKey("AIzaSyDG5xC4ErbnEQ4Gq2MQR5hlBKLqV0rqr7k");
     return gapi.client.load("https://gmail.googleapis.com/$discovery/rest?version=v1")
         .then(function() { console.log("GAPI client loaded for API"); 
-        signinsuccess();
+        
         
         
     },
@@ -35,50 +35,161 @@ let pagenation = 0;
   });
   // Make sure the client is loaded and sign-in is complete before calling this method.
   // User Profile
+  let usermail= ''
   function getProfile() {
     return gapi.client.gmail.users.getProfile({
       "userId": "me"
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-               console.log("Response", response);
+              //  console.log("Response", response);
                usermail = response.result.emailAddress
                console.log("get profile function executed")
                 return response;
               },
               function(err) { console.error("Execute error", err); });
   }
-  
-
 
   function shortmessage() {
   
         return gapi.client.gmail.users.messages.list({
           "userId": "me",
           "maxResults": 500
+
         })
             .then(function(response) {
                     // Handle the results here (response.result has the parsed body).
-                   // console.log("Response", response);
+                   console.log("Response", response);
                    console.log("shortmessage executed")
                     return response;
                   },
                   function(err) { console.error("Execute error", err); });
                   
       }
-
- 
-
   // auth2 is initialized with gapi.auth2.init() and a user is signed in.
+    
+async function Primary() {
+       // const primaryMsg = document.querySelector('.primary-message');        
+        const data = await shortmessage();
+
+        const msg = data.result.messages
+       // primaryMsg.innerHTML = ''; //wipping the old data  
+        encodemsg.length = 0;
+
+        msg.forEach((user)=>{ 
+  
+          return gapi.client.gmail.users.messages.get({
+            "userId": "me",
+            "id": user.id,
+            "format": "full",
+          
+
+          })
+              .then(function(response) {
+                      // Handle the results here (response.result has the parsed body).
+                      //console.log("Response", response);                  
+                      
+                      encodemsg.push(response)
+                      load.push(response.result.payload)               
+
+                    },
+                    function(err) { console.error("Execute error", err); });
+        })
+        console.log("Primaryfuntion executed")
+        console.log(encodemsg)
+       
+
+        return encodemsg; 
+        
+      }
+ let pg=0;
+ let maxpg = 0;   
+ function nextpg()
+  {
+    
+    if(pg<maxpg-20)
+    {
+      pg = pg+20
+      display_msg()
+    }
+  }
+  function prevpg()
+{
+  if(pg==0){
+    pg=0
+  }else{
+    pg=pg-20
+    display_msg()
+  }
+}
+//Inbox function starts
+function display_msg(da='INBOX'){
+  var msgtype = da
+  const primaryMsg = document.querySelector('.message-content'); 
+  primaryMsg.innerHTML = '';
+  
+  maxpg = encodemsg.length
+// for(let j=0; j<encodemsg.length; j++)
+for(let j=0+pg; j<20+pg; j++)
+{
+  // console.log(encodemsg[j].result.id)
+  
+  var hearderdata = encodemsg[j].result.payload.headers
+  if(encodemsg[j].result.labelIds.filter((el)=> el == msgtype).toString()== msgtype )
+   {                     
+    var sub = hearderdata.filter((el)=> el.name == "Subject").map(e=>e.value)
+    var from = hearderdata.filter((el)=> el.name == "From").map(e=>e.value)
+    var msgda = hearderdata.filter((el)=> el.name == "Date").map(e=>e.value)
+
+      const msg_date = new Date(msgda);
+      const date = msg_date.getDate()-1;
+      const month = Number(msg_date.getMonth())+1;
+      const year = Number(msg_date.getFullYear())-1;                                            
+    
+        primaryMsg.innerHTML += `
+          <div >
+          <a href="#${j}"  class="msg-record" onclick="inboxmsg_enc(${j})">
+          
+          <div class="row subjectmsg">
+            <div class="col-0">
+            ${from}
+            </div>
+            <div class="col-6">
+            ${sub}
+            </div>
+            <div class="col-0 ">
+            ${date+"/"+ month+"/"+year}
+            </div>
+            
+          </div>
+          
+          </a>
+          <div>
+
+
+          `
+          var  backbtn = document.querySelector(".back-btn")
+          backbtn.innerHTML = ``
+
+       var  backbtn = document.querySelector(".back-btn")
+       backbtn.innerHTML = `<div>
+       <button onclick="display_msg('${msgtype}')" class="btn btn-danger rounded-circle">
+       
+               <span class="material-icons">refresh</span>
+               
+       </button>
+       <div>`
+
+}
+                 
+}
+}
 
 
       // loading new data
      
-      async function signinsuccess(){
-        const container = document.querySelector('.mainheader');
-        const data = await getProfile();
-        
-
+async function signinsuccess(){
+        const container = document.querySelector('.mainheader');      
         //console.log(data)
         container.innerHTML = ''; //wipping the old data     
           container.innerHTML  += ` 
@@ -187,20 +298,20 @@ let pagenation = 0;
                 </div>
                 <div class="modal-footer">
               
-
-                <input type="button"   class="btn btn-success" value="Send Email" onclick="sendEmail(
+                <input type="button" class="btn btn-success" value="Send" onclick="sendingEmail(
                   document.getElementById('to').value,
                   document.getElementById('subject').value,
                   document.getElementById('message').value,
                   document.getElementById('filename').value,
                   document.getElementById('attach').value
-                )"/>
+                )"/>                
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
               
             </div>
-          </div>
+          </div><button onclick="nextpg()">Next</button>
+          <button onclick="prevpg()">Prev</button>
           </div>
 
           
@@ -208,7 +319,8 @@ let pagenation = 0;
     <div class="row">
     <div class="col-12 message-content bgwhite">
           
-            <div> Loading...</div>
+Loading            
+            </div>
             
             </div>
             
@@ -216,127 +328,11 @@ let pagenation = 0;
     </div>
   <div> ` 
           console.log("signinsuccess function executed")
-          Primary(); 
-          
+          setTimeout(display_msg, 1000);
                 
       }  
 
-      
-      
-async function Primary() {
-       // const primaryMsg = document.querySelector('.primary-message');        
-        const data = await shortmessage();
-
-        const msg = data.result.messages
-       // primaryMsg.innerHTML = ''; //wipping the old data  
-        encodemsg.length = 0;
-
-        msg.forEach((user)=>{ 
-  
-          return gapi.client.gmail.users.messages.get({
-            "userId": "me",
-            "id": user.id,
-            "format": "full",
-          
-
-          })
-              .then(function(response) {
-                      // Handle the results here (response.result has the parsed body).
-                      //console.log("Response", response);                  
-                      
-                      encodemsg.push(response)
-                      load.push(response.result.payload)               
-
-                    },
-                    function(err) { console.error("Execute error", err); });
-        })
-        console.log("Primaryfuntion executed")
-        console.log(encodemsg)
-        setTimeout(function() {
-          display_msg("INBOX");
-      }, 4000)
-
-        return encodemsg; 
-        
-      }
-      
-//Inbox function starts
-
-
-
-
-function display_msg(da){
-  var msgtype = da
-  console.log(da, typeof(da))
-  const primaryMsg = document.querySelector('.message-content'); 
-  primaryMsg.innerHTML = '';
-
-for(let j=0; j<encodemsg.length; j++)
-{
-  var hearderdata = encodemsg[j].result.payload.headers
-  // console.log(encodemsg[j].result.labelIds)
-  if(encodemsg[j].result.labelIds.filter((el)=> el == msgtype).toString()== msgtype )
-   {                     
-    var sub = hearderdata.filter((el)=> el.name == "Subject").map(e=>e.value)
-    var from = hearderdata.filter((el)=> el.name == "From").map(e=>e.value)
-    var msgda = hearderdata.filter((el)=> el.name == "Date").map(e=>e.value)
-
-      const msg_date = new Date(msgda);
-      const date = msg_date.getDate()-1;
-      const month = Number(msg_date.getMonth())+1;
-      const year = Number(msg_date.getFullYear())-1;                                            
-    
-        
-        primaryMsg.innerHTML += `
-          <div >
-          <a href="#${j}"  class="msg-record" onclick="inboxmsg_enc(${j})">
-          
-          <div class="row subjectmsg">
-            <div class="col-0">
-            ${from}
-            </div>
-            <div class="col-6">
-            ${sub}
-            </div>
-            <div class="col-0 ">
-            ${date+"/"+ month+"/"+year}
-            </div>
-            
-          </div>
-          
-          </a>
-          <div>
-
-
-          `
-          var  backbtn = document.querySelector(".back-btn")
-          backbtn.innerHTML = ``
-       //console.log("display message clicked")  
-
-       var  backbtn = document.querySelector(".back-btn")
-       backbtn.innerHTML = `<div>
-       <button onclick="display_msg('${msgtype}')" class="btn btn-danger rounded-circle">
-       
-               <span class="material-icons">refresh</span>
-               
-       </button>
-       <div>`
-
-}
-                 
-}
-}
-
-
-
 let msgencoded = []
-      
-    //  console.log("response")
-      //console.log(encodemsg)
-
-      //  console.log("Payload")
-      //  console.log(load)
-
 function inboxmsg_enc(num){
   const data = document.querySelector(".message-content")
     data.innerHTML = ``;
@@ -382,24 +378,23 @@ function inboxmsg_enc(num){
 
  //Sending message
 
-async function sendEmail(to,subject,message,filename,attach) {
-console.log(filename, attach)
-let maildata  = await getProfile()
-let mailID = maildata.result.emailAddress
+function sendingEmail(to,subject,message,filename,attach) {
   Email.send({
-  Host: "smtp.gmail.com",
-  Username : "testingforweb01@gmail.com",
-  Password : "Password!23",
-  To : to,
-  From : mailID,
-  Subject : subject,
-  Body : message,
-  Attachments : [
+    Host: "smtp.gmail.com",
+    Username :  "testingforweb01@gmail.com",
+    Password : "Password!23",
+    To : to,
+    From : usermail,
+    Subject : subject,
+    Body : message,
+    Attachments : [
   	{
   		name : filename,
   		path: attach
   	}]
-  }).then(
-  	message => alert("mail sent successfully")
-  );
+  })
+  .then(function(message){
+    alert("mail sent successfully",message)
+  });
 }
+
