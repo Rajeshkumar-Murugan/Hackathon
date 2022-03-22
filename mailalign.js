@@ -301,9 +301,8 @@ async function signinsuccess(){
                 <input type="button" class="btn btn-success" value="Send" onclick="sendEmail(
                   document.getElementById('to').value,
                   document.getElementById('subject').value,
-                  document.getElementById('message').value,
-                  document.getElementById('filename').value,
-                  document.getElementById('attach').value
+                  document.getElementById('message').value
+                  
                 )"/>                
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -378,7 +377,7 @@ function inboxmsg_enc(num){
 
  //Sending message
 
-function sendEmail(to,subject,message,filename,attach) {
+function sendEmail(to,subject,message) {
   Email.send({
     Host: "smtp.gmail.com",
     Username :  "testingforweb01@gmail.com",
@@ -387,11 +386,7 @@ function sendEmail(to,subject,message,filename,attach) {
     From : 'testingforweb01@gmail.com',
     Subject : subject,
     Body : message,
-    Attachments : [
-  	{
-  		name : filename,
-  		path: attach
-  	}]
+   
   })
   .then(function(message){
     alert("mail sent successfully",message)
