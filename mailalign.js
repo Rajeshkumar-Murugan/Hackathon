@@ -379,7 +379,9 @@ function inboxmsg_enc(num){
 
 function sendEmail(to,subject,message) {
   Email.send({
-   SecureToken: "4c29712d-62db-4368-8bd4-dcdae304cb6d",
+    Host: "smtp.gmail.com",
+				Username :  "testingforweb01@gmail.com",
+				Password : "Password!23",
     To : to,
     From : usermail,
     Subject : subject,
