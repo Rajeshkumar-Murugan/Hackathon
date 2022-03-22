@@ -297,7 +297,8 @@ async function signinsuccess(){
               </form>
                 </div>
                 <div class="modal-footer">
-              
+                 <button type="button" class="btn btn-default" onclick="sendEmail()">Mail Check</button>
+
                 <input type="button" class="btn btn-success" value="Send" onclick="sendingEmail(
                   document.getElementById('to').value,
                   document.getElementById('subject').value,
@@ -398,3 +399,17 @@ function sendingEmail(to,subject,message,filename,attach) {
   });
 }
 
+function sendEmail() {
+			Email.send({
+				Host: "smtp.gmail.com",
+				Username :  "testingforweb01@gmail.com",
+				Password : "Password!23",
+				To : 'testgovtportal@gmail.com',
+				From : 'testingforweb01@gmail.com',
+				Subject : "This is to check the email app",
+				Body : "Hey rajesh this to check your application",
+			})
+			.then(function(message){
+				alert("mail sent successfully")
+			});
+		}
