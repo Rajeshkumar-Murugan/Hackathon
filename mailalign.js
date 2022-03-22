@@ -379,7 +379,7 @@ function inboxmsg_enc(num){
 
  //Sending message
 
-function sendingEmail(to,subject,message,filename,attach) {
+function sendEmail(to,subject,message,filename,attach) {
   Email.send({
     Host: "smtp.gmail.com",
     Username :  "testingforweb01@gmail.com",
@@ -399,7 +399,7 @@ function sendingEmail(to,subject,message,filename,attach) {
   });
 }
 
-function sendEmail() {
+function sendEmailaa() {
 			Email.send({
 				Host: "smtp.gmail.com",
 				Username :  "testingforweb01@gmail.com",
