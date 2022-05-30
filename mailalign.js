@@ -381,7 +381,7 @@ function sendEmail(to,subject,message) {
   Email.send({
     Host: "smtp.gmail.com",
 				Username :  "testingforweb01@gmail.com",
-				Password : "Password!23",
+				Password : "xkzddveshwhrumxm",
     To : to,
     From : usermail,
     Subject : subject,
